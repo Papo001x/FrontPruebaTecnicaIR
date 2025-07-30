@@ -1,0 +1,42 @@
+<section>
+  <h2>Lista de clase</h2>
+  <div>
+    <div class="mat-elevation-z8" style="width: 80%">
+      <table mat-table [dataSource]="list" matSort>
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+          <td mat-cell *matCellDef="let user">{{ user.id }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombres</th>
+          <td mat-cell *matCellDef="let user">{{ user.name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="lastName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Apellidos</th>
+          <td mat-cell *matCellDef="let user">{{ user.lastName }}</td>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Acciones</th>
+          <td mat-cell *matCellDef="let ps">
+            <button
+              mat-icon-button
+              color="warn"
+              matTooltip="Ver Dashboard de usuario"
+              (click)="viewUserDashboard(ps.id)"
+            >
+              <mat-icon>visibility</mat-icon>
+            </button>
+          </td></ng-container
+        >
+        <tr mat-header-row *matHeaderRowDef="columns"></tr>
+        <tr mat-row *matRowDef="let row; columns: columns"></tr>
+      </table>
+      <mat-paginator
+        [pageSize]="10"
+        [pageSizeOptions]="[5, 10, 20]"
+      ></mat-paginator>
+    </div>
+  </div>
+</section>

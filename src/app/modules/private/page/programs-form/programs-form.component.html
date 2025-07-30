@@ -1,0 +1,49 @@
+<section class="program-form-container">
+  <h2>{{ isEditMode ? "Editar Programa" : "Crear Programa" }}</h2>
+  <form [formGroup]="programForm" class="user-form">
+    <mat-form-field class="full-width">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="name" />
+      <mat-error *ngIf="programForm.get('name')?.hasError('required')">
+        El nombre es obligatorio
+      </mat-error>
+      <mat-error *ngIf="programForm.get('name')?.hasError('maxlength')">
+        El nombre no puede superar los 255 caracteres
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Total de creditos</mat-label>
+      <input type="number" matInput formControlName="totalCredits" />
+      <mat-error *ngIf="programForm.get('totalCredits')?.hasError('required')">
+        El Total de creditos es obligatorio
+      </mat-error>
+      <mat-error *ngIf="programForm.get('totalCredits')?.hasError('max')">
+        No se puede superar los 200 creditos
+      </mat-error>
+      <mat-error *ngIf="programForm.get('totalCredits')?.hasError('min')">
+        El minimo de creditos es 1
+      </mat-error>
+    </mat-form-field>
+    <div class="button-container">
+      <button
+        mat-raised-button
+        color="accent"
+        type="button"
+        class="button"
+        (click)="cancel()"
+      >
+        Cancelar
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        class="button"
+        (click)="onSubmit()"
+        [disabled]="programForm.invalid"
+      >
+        {{ isEditMode ? "Actualizar" : "Crear" }}
+      </button>
+    </div>
+  </form>
+</section>

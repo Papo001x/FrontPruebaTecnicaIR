@@ -1,0 +1,66 @@
+<section class="page-container">
+  <div class="login-container">
+    <div class="login-header">
+      <h1>Sistema de gestion academica.</h1>
+      <h4>Prueba tecnica de Brandon Henriquez</h4>
+    </div>
+    <div>
+      <h2>Login</h2>
+      <form [formGroup]="loginForm" class="login-form">
+        <mat-form-field class="full-width">
+          <mat-label>Ingrese su correo</mat-label>
+          <input
+            matInput
+            formControlName="email"
+            placeholder="Ingrese su correo"
+          />
+          @if (email?.hasError('required')) {
+          <mat-error>El correo es obligatorio</mat-error>
+          } @if (email?.hasError('email')) {
+          <mat-error>El correo no es valido</mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>Ingrese su contraseña</mat-label>
+          <input
+            matInput
+            [type]="hide() ? 'password' : 'text'"
+            formControlName="password"
+            placeholder="Ingrese su contraseña"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="clickEvent($event)"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide()"
+          >
+            <mat-icon type="button">{{
+              hide() ? "visibility_off" : "visibility"
+            }}</mat-icon>
+          </button>
+
+          @if (password?.hasError('required')) {
+          <mat-error>La contraseña es obligatoria</mat-error>
+          } @if (password?.hasError('pattern')) {
+          <mat-error *ngIf="password?.hasError('pattern')">
+            La contraseña debe tener al menos 8 caracteres e incluir una letra
+            mayúscula, una letra minúscula, un número y un carácter especial
+            (como # ? ! $ % ^ & * -).
+          </mat-error>
+          }
+        </mat-form-field>
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          class="login-button"
+          [disabled]="loginForm.invalid"
+          (click)="onSubmit()"
+        >
+          Ingresar
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

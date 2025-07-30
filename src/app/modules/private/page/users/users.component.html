@@ -1,0 +1,84 @@
+<section class="users-container">
+  <div class="title-container">
+    <h1>Lista de usuarios</h1>
+  </div>
+  <div class="create-container">
+    <button
+      mat-raised-button
+      color="secundary"
+      type="submit"
+      (click)="createUser()"
+    >
+      Crear usuario
+    </button>
+  </div>
+  <div class="mat-elevation-z8" style="width: 80%">
+    <table mat-table [dataSource]="users" matSort class="full-width-table">
+      <!-- Nombre Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+        <td mat-cell *matCellDef="let user">{{ user.id }}</td>
+      </ng-container>
+
+      <!-- Edad Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombres</th>
+        <td mat-cell *matCellDef="let user">{{ user.name }}</td>
+      </ng-container>
+
+      <!-- Programa Column -->
+      <ng-container matColumnDef="lastName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Apellidos</th>
+        <td mat-cell *matCellDef="let user">{{ user.lastName }}</td>
+      </ng-container>
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Correo</th>
+        <td mat-cell *matCellDef="let user">{{ user.email }}</td>
+      </ng-container>
+      <ng-container matColumnDef="roleName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Rol</th>
+        <td mat-cell *matCellDef="let user">{{ user.roleName }}</td>
+      </ng-container>
+      <!-- Acciones Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let user">
+          @if(user.roleId !== 1){
+          <button
+            mat-icon-button
+            color="warn"
+            matTooltip="Eliminar"
+            (click)="deleteUser(user.id)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            color="warn"
+            matTooltip="Editar"
+            (click)="edit(user.id)"
+          >
+            <mat-icon>edit</mat-icon></button
+          >} @if (user.roleId !== 2 && user.roleId !== 1) {
+          <button
+            mat-icon-button
+            color="accent"
+            matTooltip="Gestionar estudiante"
+            (click)="dashBoard(user.id)"
+          >
+            <mat-icon>person</mat-icon>
+          </button>
+          }
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columns"></tr>
+      <tr mat-row *matRowDef="let row; columns: columns"></tr>
+    </table>
+
+    <mat-paginator
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 20]"
+    ></mat-paginator>
+  </div>
+</section>

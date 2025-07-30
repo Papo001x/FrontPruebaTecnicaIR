@@ -1,0 +1,10 @@
+export const environment = {
+  API: 'http://18.223.30.121:5000/api',
+  CONST: {
+    JWT_TOKEN: 'jwt_token',
+  },
+  encryption: {
+    secret_key: 'VG0ZdVQMJd3ooIzLqjVbfAn3Er0YHQ',
+    encryptStorage: false,
+  },
+};

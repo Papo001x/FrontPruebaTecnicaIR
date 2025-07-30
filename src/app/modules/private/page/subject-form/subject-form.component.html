@@ -1,0 +1,49 @@
+<section class="subject-form-container">
+    <h2>{{ isEditMode ? "Editar Materia" : "Crear Materia" }}</h2>
+    <form [formGroup]="subjectForm" class="user-form">
+        <mat-form-field class="full-width">
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="name" />
+          <mat-error *ngIf="subjectForm.get('name')?.hasError('required')">
+            El nombre es obligatorio
+          </mat-error>
+          <mat-error *ngIf="subjectForm.get('name')?.hasError('maxlength')">
+            El nombre no puede superar los 255 caracteres
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>Numero de creditos</mat-label>
+          <input type="number" matInput formControlName="credits" />
+          <mat-error *ngIf="subjectForm.get('credits')?.hasError('required')">
+            El numero de creditos es obligatorio
+          </mat-error>
+          <mat-error *ngIf="subjectForm.get('credits')?.hasError('max')">
+            No se puede superar los 3 creditos
+          </mat-error>
+          <mat-error *ngIf="subjectForm.get('credits')?.hasError('min')">
+            El minimo de creditos es 1
+          </mat-error>
+        </mat-form-field>
+        <div class="button-container">
+          <button
+            mat-raised-button
+            color="accent"
+            type="button"
+            class="button"
+            (click)="cancel()"
+          >
+            Cancelar
+          </button>
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            class="button"
+            (click)="onSubmit()"
+            [disabled]="subjectForm.invalid"
+          >
+            {{ isEditMode ? "Actualizar" : "Crear" }}
+          </button>
+        </div>
+      </form>
+</section>

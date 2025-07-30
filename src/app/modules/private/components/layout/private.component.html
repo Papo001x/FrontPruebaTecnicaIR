@@ -1,0 +1,31 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav mode="side" opened class="sidenav">
+    <mat-nav-list>
+      <a class="item-list" mat-list-item routerLink="/private/users">
+        <mat-icon class="icon">person</mat-icon>
+        <span>Usuarios</span>
+      </a>
+      @if (rolId === 1) {
+      <a class="item-list" mat-list-item routerLink="/private/subjects">
+        <mat-icon class="icon">book</mat-icon>
+        <span>Materias</span>
+      </a>
+      <a class="item-list" mat-list-item routerLink="/private/programs">
+        <mat-icon class="icon">menu_book</mat-icon>
+        <span>Programas</span>
+      </a>
+
+      }
+      <a class="item-list" mat-list-item (click)="logout()">
+        <mat-icon class="icon">logout</mat-icon>
+        <span>Salir</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
