@@ -1,5 +1,5 @@
 export const environment = {
-  API: 'https://18.223.30.121:5000/api',
+  API: 'https://18.223.30.121:5001/api',
   CONST: {
     JWT_TOKEN: 'jwt_token',
   },
